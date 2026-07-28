@@ -1,5 +1,4 @@
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
 # --- Page setup ---
@@ -7,7 +6,8 @@ st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
 st.write("Choose the fruits you want in your custom Smoothie!")
 
 # --- Get the active Snowpark session (works when run inside Streamlit in Snowflake) ---
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # --- Name on the order ---
 name_on_order = st.text_input('Name on Smoothie')
