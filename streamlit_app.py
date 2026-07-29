@@ -40,16 +40,16 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
-# New section
 import requests
 
-smoothiefroot_response = requests.get(
-    "https://my.smoothiefroot.com/api/fruit/watermelon"
-)
+if ingredients_list:
+    fruit_choice = ingredients_list[0]
 
-st.json(smoothiefroot_response.json())
+    response = requests.get(
+        f"https://my.smoothiefroot.com/api/fruit/{fruit_choice.lower()}"
+    )
 
-
+    st.write(response.json())
 
 
 
