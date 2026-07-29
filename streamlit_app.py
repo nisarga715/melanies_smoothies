@@ -51,6 +51,11 @@ if ingredients_list:
 
     st.write(response.json())
 
+sf_df = st.dataframe(
+    data=smoothiefroot_response.json(),
+    use_container_width=True
+)
+
 
 
 
