@@ -47,15 +47,7 @@ import pandas as pd
 smoothiefroot_response = requests.get(
     "https://my.smoothiefroot.com/api/fruit/watermelon"
 )
-
-# Display the raw JSON (optional)
-# st.text(smoothiefroot_response.json())
-
-# Convert JSON to a DataFrame and display it
-st.dataframe(
-    data=pd.json_normalize(smoothiefroot_response.json()),
-    use_container_width=True
-)
+sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 
 
