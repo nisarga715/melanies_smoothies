@@ -40,22 +40,22 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
+# --- New section to display Smoothie Fruit nutrition information ---
 import requests
+import pandas as pd
 
-if ingredients_list:
-    fruit_choice = ingredients_list[0]
-
-    response = requests.get(
-        f"https://my.smoothiefroot.com/api/fruit/{fruit_choice.lower()}"
-    )
-
-    st.write(response.json())
-
-sf_df = st.dataframe(
-    data=smoothiefroot_response.json(),
-    use_container_width=True
+smoothiefroot_response = requests.get(
+    "https://my.smoothiefroot.com/api/fruit/watermelon"
 )
 
+# Display the raw JSON (optional)
+# st.text(smoothiefroot_response.json())
+
+# Convert JSON to a DataFrame and display it
+st.dataframe(
+    data=pd.json_normalize(smoothiefroot_response.json()),
+    use_container_width=True
+)
 
 
 
